@@ -60,3 +60,9 @@ Finally, test the installation by running the `00_hello_world.py` script from th
 
 > **Make sure you select the newly created virtual environment in VS Code before running the script.**
 > You can do this by clicking on the Python version in the bottom-left corner of VS Code and selecting the interpreter from the `.venv` folder.
+
+## Resources
+
+- [COMPAS Framework](https://compas.dev/)
+- [COMPAS docs](https://compas.dev/compas/latest/)
+- [COMPAS Timber docs](https://gramaziokohler.github.io/compas_timber/latest/)
