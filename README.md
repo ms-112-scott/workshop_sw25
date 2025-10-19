@@ -4,6 +4,8 @@
 
 > Exploring computational design and digital fabrication with the COMPAS framework and the `compas_timber` package.
 
+👉 [Slides](https://docs.google.com/presentation/d/1nTQpXlQSnMDSVvx7Hv89kfBXL7Xr-fQAAc6chlXhqO0/edit?usp=sharing)
+
 ## Installation
 
 We will install `compas_timber` in Rhino and also in a standalone Python environment.
@@ -66,3 +68,4 @@ Finally, test the installation by running the `00_hello_world.py` script from th
 - [COMPAS Framework](https://compas.dev/)
 - [COMPAS docs](https://compas.dev/compas/latest/)
 - [COMPAS Timber docs](https://gramaziokohler.github.io/compas_timber/latest/)
+- [Slides](https://docs.google.com/presentation/d/1nTQpXlQSnMDSVvx7Hv89kfBXL7Xr-fQAAc6chlXhqO0)
