@@ -1,15 +1,14 @@
 import math
 
-from compas.geometry import Frame, Vector, Point, Line, Polyline, Plane, Transformation, Brep, Curve
+from compas.geometry import Frame, Vector, Point, Line, Polyline, Transformation, Brep, Curve
 
 from compas_timber.elements import Beam
 from compas_timber.fabrication import JackRafterCut, JackRafterCutProxy
 from compas_timber.fabrication import Lap, LapProxy
 from compas_timber.fabrication import BTLxProcessing
-from compas_timber.fabrication import OrientationType
 
-from compas_rhino.conversions import plane_to_rhino
-from Rhino.Geometry import CurveOffsetCornerStyle
+from compas_rhino.conversions import frame_to_rhino_plane
+from Rhino.Geometry import CurveOffsetCornerStyle # type: ignore
 
 
 def get_toolpath_from_lap_processing(beam: Beam, 
@@ -41,22 +40,20 @@ def get_toolpath_from_lap_processing(beam: Beam,
         slicing_frames.append(frame)
         slices += e.slice(frame)
 
-    direction = machining_frame.zaxis
     radius = tool_radius / 2
 
     spirals = []
     
-    for current_slice in slices:
-        point = current_slice.point_at(current_slice.domain[0])
-        plane = Plane(point, direction)
-
+    for current_slice, slicing_frame in zip(slices, slicing_frames):
         num_offsets = int((beam.width / 2) / radius) - 1
         current_offset = current_slice
         slice_offsets = [current_offset]
 
         for i in range(num_offsets):
             offset_step = radius * -1
-            c = Curve.from_native(current_offset.native_curve.Offset(plane_to_rhino(plane), offset_step, tolerance, CurveOffsetCornerStyle.Chamfer)[0])
+            curve_offset_style = CurveOffsetCornerStyle.NONE
+            c = Curve.from_native(current_offset.native_curve.Offset(frame_to_rhino_plane(slicing_frame), offset_step, tolerance, curve_offset_style)[0])
+            
             current_offset = c
             slice_offsets.insert(0, c)
         
