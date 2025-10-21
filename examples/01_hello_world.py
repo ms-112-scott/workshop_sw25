@@ -8,3 +8,5 @@ compas_timber=v{compas_timber.__version__}""")
 
 
 print("Done!")
+
+print("Hello")
